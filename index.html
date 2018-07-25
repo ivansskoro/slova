@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+
+  .elipse {
+    width: 200px;
+    height: 100px;
+    background-color: black;
+  }
+
+  .ekstra {
+    position: absolute;
+    left:50px;
+
+  }
+
+  </style>
+
+  <script>
+
+  var maxRotate = 180
+
+  function readMouseMove(e) {
+    var result_x = document.getElementById('x_result')
+    var result_y = document.getElementById('y_result')
+    var elipse = document.querySelector('.elipse')
+
+    var maxRadius = Math.min(
+      elipse.clientWidth, elipse.clientHeight
+    ) / 2
+
+    var height = window.innerHeight
+    var width = window.innerWidth
+
+    var xPercent = (e.clientX * 100) / width
+    var yPercent = (e.clientY * 100) / height
+
+    var xFinal = maxRotate * (xPercent / 100)
+    var yFinal = maxRadius * (yPercent / 100)
+
+    result_x.innerHTML = e.clientX;
+    result_y.innerHTML = e.clientY;
+
+    elipse.style.transform = 'rotate(' + xFinal + 'deg)'
+    elipse.style.borderRadius = yFinal + 'px'
+
+  }
+  document.onmousemove = readMouseMove;
+
+  </script>
+</head>
+
+<body>
+  <h1>Document that reads mouse movements</h1>
+  <h2 id="x_result">0</h2>
+  <h2 id="y_result">0</h2>
+
+  <section class="elipse">
+  </section>
+  <section class="elipse ekstra">
+  </section>
+
+</body>
+</html>
